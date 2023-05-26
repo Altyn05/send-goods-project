@@ -9,10 +9,11 @@ import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
 @Entity
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@Builder
 public class Dispatch {
     @Id
     private Long id;
@@ -28,6 +29,4 @@ public class Dispatch {
     @JoinColumn(name = "dispatch_id", referencedColumnName = "id" )
     @Builder.Default
     private List<Good> goods = new ArrayList<>();
-
-
 }
