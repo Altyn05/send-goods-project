@@ -1,17 +1,18 @@
 package org.example.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Dispatch {
     @Id
     private Long id;
@@ -21,7 +22,12 @@ public class Dispatch {
     private Integer sumWeight;
     private String name;
     private Type type;
+
+    @EqualsAndHashCode.Exclude
     @OneToMany
     @JoinColumn(name = "dispatch_id", referencedColumnName = "id" )
-    private List<Good> goods;
+    @Builder.Default
+    private List<Good> goods = new ArrayList<>();
+
+
 }
