@@ -26,7 +26,7 @@ public class Dispatch {
 
     @EqualsAndHashCode.Exclude
     @OneToMany
-    @JoinColumn(name = "dispatch_id", referencedColumnName = "id" )
+    @JoinColumn(name = "dispatch_id", referencedColumnName = "id")
     @Builder.Default
     private List<Good> goods = new ArrayList<>();
 }
