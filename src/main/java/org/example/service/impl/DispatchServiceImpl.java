@@ -25,4 +25,24 @@ public class DispatchServiceImpl implements DispatchService {
     public Dispatch getDispatchById(Long id) {
         return dispatchRepository.getById(id);
     }
+
+    @Override
+    public Dispatch save(Dispatch dispatch) { return dispatchRepository.save(dispatch); }
+
+    @Override
+    public Dispatch updateDispatch(Long id, Dispatch dispatch) {
+        if (!dispatchRepository.existsById(id)){
+            return null;
+        }
+        dispatch.setId(id);
+        return dispatchRepository.save(dispatch); };
+
+    @Override
+    public boolean deleteDispatch(Long id) {
+        if (!dispatchRepository.existsById(id)) {
+            return false;
+        }
+        dispatchRepository.deleteById(id);
+        return true;
+    }
 }
