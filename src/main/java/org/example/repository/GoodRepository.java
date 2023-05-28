@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface GoodRepository extends JpaRepository<Good,Long> {
 
-    @Query("SELECT g FROM Good g WHERE g.id=:dispatchId")
+    @Query("SELECT g FROM Good g WHERE g.dispatch.id=:dispatchId")
     List<Good> getGoodsByDispatchId(Long dispatchId);
 }
