@@ -30,7 +30,8 @@ public class DispatchController {
 
     @GetMapping("/all")
     public List<Dispatch> getAll(){
-       return dispatchService.getAllDispatches();
+
+        return dispatchService.getAllDispatches();
     }
     @GetMapping("/{dispatch_id}")
     public Dispatch getDispatchById(@PathVariable("dispatch_id") Long dispatchId){
@@ -40,11 +41,12 @@ public class DispatchController {
     public List<Good> getGoodsByDispatchId(@PathVariable("dispatch_id") Long dispatchId){
         return goodService.getGoodsByDispatchId(dispatchId);
     }
-    @PostMapping("/")
+    @PostMapping()
     public Dispatch createDispatch(@RequestBody Dispatch dispatch){
+
         return dispatchService.save(dispatch);
     }
-    @PutMapping("/dispatch_id")
+    @PutMapping("/{dispatch_id}")
     public ResponseEntity<Dispatch> updateDispatch(@PathVariable("dispatch_id") Long id, @RequestBody Dispatch dispatch) {
         Dispatch updatedDispatch = dispatchService.updateDispatch(id, dispatch);
         if (updatedDispatch == null) {
@@ -52,7 +54,7 @@ public class DispatchController {
         }
         return ResponseEntity.ok(updatedDispatch);
     }
-    @DeleteMapping("/dispatches/{dispatcher_id}")
+    @DeleteMapping("/{dispatch_id}")
     public ResponseEntity<?> deleteDispatch(@PathVariable("dispatch_id") Long id) {
         boolean wasDispatchDeleted = dispatchService.deleteDispatch(id);
         if(!wasDispatchDeleted) {
